@@ -1,5 +1,5 @@
   # myblog
-  我的第一个博客，使用nodejs的koa1.0+Mongodb实现，另外同时部署在阿里云，地址www.keepforward.xyz:3000（一定要带端口号，因为域名没备案(/ □ \)）
+我的第一个博客，使用nodejs的koa1.0+Mongodb实现，另外同时部署在阿里云，地址www.keepforward.xyz:3000（一定要带端口号，因为域名没备案(/ □ \)）
  </br> node_modules文件夹没有上传，所有用到的模块信息都在package.json中。
 
    </br> 版本号：v1.1
