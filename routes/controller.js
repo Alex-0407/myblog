@@ -2,6 +2,7 @@
  * Created by liulei_dev on 2016/1/25.
  */
 var User = require('../modules/user');
+var article = require('../modules/article');
 var router = require('koa-router')();
 var koaBody = require('koa-body')();
 
@@ -47,14 +48,14 @@ var list={
     myselfRender:function *(next){
         yield this.render("/myself",{title:"关于我"});
     },
-    marksRender:function *(next){
-        yield this.render("/marks",{title:"学习记录"});
-    },
     technologyRender:function *(next){
         yield this.render("/technology",{title:"技术分享"});
     },
-    lifeRender:function *(next){
-        yield this.render("/life",{title:"生活分享"});
+    articleRender:function *(next){
+        var title = this.query.title;
+        console.log(title);
+        var docs = yield article.find({title:title});
+        yield this.render("/article",{title:"技术分享",name:title,article:docs[0].text});
     }
 };
 
@@ -63,7 +64,6 @@ router
     .post('/', koaBody, list.login)
     .get('/main', koaBody, list.mainRender)
     .get('/myself', koaBody, list.myselfRender)
-    .get('/marks', koaBody, list.marksRender)
     .get('/technology', koaBody, list.technologyRender)
-    .get('/life', koaBody, list.lifeRender);
+    .get('/article', koaBody, list.articleRender);
 module.exports = router;
