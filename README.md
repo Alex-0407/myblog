@@ -4,7 +4,7 @@
 </br>后台爬虫采用python脚本实现，每天爬取一次。
 </br>目前实现主要功能：登录、注册、添加好友印象、文章爬取、文章动态更新。
 </br>项目同时部署在阿里云，访问地址[www.keepforward.xyz:3000](www.keepforward.xyz:3000)
-</br>个人也在研究一些新技术，包括Reactjs、Angularjs等等，新技术主要在[https://github.com/a1511870876/secondWorks](https://github.com/a1511870876/secondWorks)开发试验，同时也部署在阿里云的7000端口[www.keepforward.xyz:3000](www.keepforward.xyz:3000)
+</br>个人也在研究一些新技术，包括Reactjs、Angularjs等等，新技术主要在[https://github.com/a1511870876/secondWorks](https://github.com/a1511870876/secondWorks)开发试验，同时也部署在阿里云的7000端口[www.keepforward.xyz:7000](www.keepforward.xyz:7000)
 </br>另外个人有一些学习分享，大家共同交流，地址[https://github.com/a1511870876/studyFiles](https://github.com/a1511870876/studyFiles) 
 </br>‘OK，我确实不懂，但是我能学会，并且会想尽一切办法做得更好。’
 </br>‘无贵无贱，无长无少，道之所存，师之所存也。’
