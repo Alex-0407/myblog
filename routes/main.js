@@ -11,4 +11,4 @@ Main.prototype.addArticle = function *(next) {
     this.body = docs;
 };
 
-module .exports = new Main();
+module.exports = new Main();

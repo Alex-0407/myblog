@@ -7,13 +7,17 @@ var userSchema = new mongoose.Schema({
     name: {type: String, match: /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/},
     password: String
 });
-var User = mongoose.model('User',userSchema);
+var User = mongoose.model('User', userSchema);
 //创建了一个名为 User 的 model
 
 var co = require('co');
 var thunkify = require('thunkify');
-var find = thunkify(function(){User.find.apply(User,arguments)});
-var findOne = thunkify(function(){User.findOne.apply(User,arguments)});
+var find = thunkify(function () {
+    User.find.apply(User, arguments)
+});
+var findOne = thunkify(function () {
+    User.findOne.apply(User, arguments)
+});
 
 module.exports = {
     model: User,

@@ -10,14 +10,15 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/button.css" rel="stylesheet" type="text/css">
     <link href="layer/need/layer.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="layer/layer.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/layer/2.1/layer.js"></script>
     <style>
-        .reg td{
+        .reg td {
             height: 40px;
             text-align: right;
         }
-        .reg th{
+
+        .reg th {
             height: 40px;
             text-align: center;
         }
@@ -33,7 +34,7 @@
                 href="/technology">分享技术</a></nav>
     </header>
 
-        <%- body %>
+    <%- body %>
 
     <aside>
         <div class="avatar"><a href="/myself"><span>关于小磊</span></a></div>
@@ -98,114 +99,113 @@
 </div>
 </body>
 
-
 <script>
-//$(document).ready(function(){
-//    $(".childWindow").hide();
-//    impressionInit();
-//});
-$(window).load(function () {
-    $(".childWindow").hide();
-    impressionInit();
-    getArticles();
-});
-function impressionInit (){
-    var url = "/layout/getImpression";
-    var separator = " | ";
-    var string = "";
-    $.getJSON(url,function(data){
-        QuickSort(data,0,data.length-1);
-        for(var i=0;i<data.length;i++){
-            string += data[i]+separator;
-        }
-        $("#impression").text(string);
-    })
-}
-function addImpression() {
-    var html = '<from method="post">' +
-            '<table class="reg">' +
-            '<tr>' +
-            '<td>请填写您的印象：</td>' +
-            '<td><input type="text" class="text" id="tmpImpression"></td>' +
-            '</tr>' +
-            '<tr>' +
-            '<td>请填写您的名字：</td>' +
-            '<td><input type="text" id="tmpName" ></td>' +
-            '</tr>' +
-            '<tr>' +
-            '<td></td>' +
-            '<td><a class="button blue big" onclick="add()">添加</a></td>' +
-            '</tr>' +
-            '</table>' +
-            '</form>'
-    layer.open({
-        content: html,
-        btn: ['OK']
+    //$(document).ready(function(){
+    //    $(".childWindow").hide();
+    //    impressionInit();
+    //});
+    $(window).load(function () {
+        $(".childWindow").hide();
+        impressionInit();
+        getArticles();
     });
-}
-function add(){
-    var url = '/layout/addImoression';
-    var tmpImpression = $("#tmpImpression").val();
-    var tmpName = $("#tmpName").val();
-    if(tmpImpression == ''){
-        alert("请输入您的印象！");
-        return;
+    function impressionInit() {
+        var url = "/layout/getImpression";
+        var separator = " | ";
+        var string = "";
+        $.getJSON(url, function (data) {
+            QuickSort(data, 0, data.length - 1);
+            for (var i = 0; i < data.length; i++) {
+                string += data[i] + separator;
+            }
+            $("#impression").text(string);
+        })
     }
-    if(tmpName == ''){
-        alert("请输入您的大名！");
-        return;
+    function addImpression() {
+        var html = '<from method="post">' +
+                '<table class="reg">' +
+                '<tr>' +
+                '<td>请填写您的印象：</td>' +
+                '<td><input type="text" class="text" id="tmpImpression"></td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>请填写您的名字：</td>' +
+                '<td><input type="text" id="tmpName" ></td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td></td>' +
+                '<td><a class="button blue big" onclick="add()">添加</a></td>' +
+                '</tr>' +
+                '</table>' +
+                '</form>'
+        layer.open({
+            content: html,
+            btn: ['OK']
+        });
     }
-    var query = {
-        impression:tmpImpression,
-        author:tmpName
-    };
-    $.getJSON(url,query,function(data){
-        if(data == true){
-            layer.closeAll();
-            impressionInit();
-        }else{
-            alert("该好友印象已经有人添加！");
+    function add() {
+        var url = '/layout/addImoression';
+        var tmpImpression = $("#tmpImpression").val();
+        var tmpName = $("#tmpName").val();
+        if (tmpImpression == '') {
+            alert("请输入您的印象！");
             return;
         }
-    })
-}
-function QuickSort(array, low, high) {
-    if(low>=high){
-        return;
+        if (tmpName == '') {
+            alert("请输入您的大名！");
+            return;
+        }
+        var query = {
+            impression: tmpImpression,
+            author: tmpName
+        };
+        $.getJSON(url, query, function (data) {
+            if (data == true) {
+                layer.closeAll();
+                impressionInit();
+            } else {
+                alert("该好友印象已经有人添加！");
+                return;
+            }
+        })
     }
-    var i=low;
-    var j=high;
-    var tmpStr = array[i];
-    while (i < j) {
-        while (i < j && array[j] >= tmpStr) {
-            j--;
+    function QuickSort(array, low, high) {
+        if (low >= high) {
+            return;
         }
-        if(i<j){
-            array[i++] = array[j];
+        var i = low;
+        var j = high;
+        var tmpStr = array[i];
+        while (i < j) {
+            while (i < j && array[j] >= tmpStr) {
+                j--;
+            }
+            if (i < j) {
+                array[i++] = array[j];
+            }
+            while (i < j && array[i] <= tmpStr) {
+                i++;
+            }
+            if (i < j) {
+                array[j--] = array[i];
+            }
         }
-        while (i < j && array[i] <= tmpStr) {
-            i++;
-        }
-        if(i<j){
-            array[j--] = array[i];
-        }
+        array[i] = tmpStr;
+        QuickSort(array, low, i - 1);
+        QuickSort(array, i + 1, high);
     }
-    array[i]=tmpStr;
-    QuickSort(array,low,i-1);
-    QuickSort(array,i+1,high);
-}
-function getArticles(){
-    var url = '/main/addArticle';
-    var html = '<h2><p><span>推荐</span>文章</p></h2>';
-    $.getJSON(url,function(data){
-        var len = data.length;
-        var num = len>8?8:len;
-        for(var i=0;i<num;i++){
-            var title = data[i].title;
-            html += '<li><a href="/article?title='+title+'">'+title+'</a></li>';
-        }
-        $("#tjwz,#new").html(html);
-    });
-}
+    function getArticles() {
+        var url = '/main/addArticle';
+        var html = '<h2><p><span>推荐</span>文章</p></h2>';
+        $.getJSON(url, function (data) {
+            var len = data.length;
+            var num = len > 8 ? 8 : len;
+            for (var i = 0; i < num; i++) {
+                var title = data[i].title;
+                html += '<li><a href="/article?title=' + title + '">' + title + '</a></li>';
+            }
+            $("#tjwz,#new").html(html);
+        });
+    }
 </script>
 </html>

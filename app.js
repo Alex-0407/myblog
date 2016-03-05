@@ -25,7 +25,7 @@ render(app, {
 });
 
 routers(router);
-require('./proxy');
+//require('./proxy');
 if ('development' === app.env) {
     app.use(logger()); // Development style logging middleware
 }
@@ -39,7 +39,7 @@ app
     .use(controller.routes())
     .use(controller.allowedMethods());
 
-app.listen(3000,function(){
+app.listen(3000, function () {
     console.log("app listening on port 3000");
 });
 

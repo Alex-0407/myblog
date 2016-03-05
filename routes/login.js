@@ -7,15 +7,15 @@ function Login() {
 
 }
 
-Login.prototype.addUser = function *(next){
+Login.prototype.addUser = function *(next) {
     var name = this.query.name;
     var password = this.query.password;
-    if(!(yield User.thereIs(name))){
-        yield User.addUser(name,password);
+    if (!(yield User.thereIs(name))) {
+        yield User.addUser(name, password);
         this.body = true;
     } else {
         this.body = false;
     }
 };
 
-module .exports = new Login();
+module.exports = new Login();

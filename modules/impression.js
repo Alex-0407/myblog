@@ -3,10 +3,10 @@
  */
 var mongoose = require('./db');
 var impressionSchema = mongoose.Schema({
-    impression:{type:String},
-    author:{type:String}
+    impression: {type: String},
+    author: {type: String}
 });
-var impressionModel = mongoose.model('friendimpression',impressionSchema);
+var impressionModel = mongoose.model('friendimpression', impressionSchema);
 
 var co = require('co');
 module.exports = {
@@ -34,11 +34,20 @@ module.exports = {
             }
         })
     },
-    find:function *() {
+    find: function *() {
         return co(function *() {
             try {
                 var impression = yield impressionModel.find();
                 return impression;
+            } catch (err) {
+                console.log(err);
+            }
+        })
+    },
+    delete: function *() {
+        return co(function *() {
+            try {
+                yield impressionModel.remove();
             } catch (err) {
                 console.log(err);
             }

@@ -10,7 +10,7 @@
  * Date: 2016-1-20
  */
 var fs = require('fs');
-module.exports = function(router) {
+module.exports = function (router) {
     // automaticly mapping routes
     var router_path = __dirname;
     fs.readdirSync(router_path).forEach(function (file) {

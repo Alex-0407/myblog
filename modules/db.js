@@ -3,7 +3,7 @@
  */
 var mongoose = require('mongoose');
 // 引入 mongoose 模块
-mongoose.connect('mongodb://localhost/blog');
+mongoose.connect('mongodb://sweet:mubai031224@localhost/blog');
 // 然后连接对应的数据库：mongodb://localhost/blog
 // 其中，前面那个 mongodb 是 protocol scheme 的名称；localhost 是 mongod 所在的地址；
 // 端口号省略则默认连接 27017；test 是数据库的名称

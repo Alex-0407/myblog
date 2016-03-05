@@ -4,18 +4,20 @@
 var mongoose = require('./db');
 
 var articleSchema = mongoose.Schema({
-    text:{type:String},
-    abstract:{type:String},
-    time:{type:String},
-    title:{type:String}
+    text: {type: String},
+    abstract: {type: String},
+    time: {type: String},
+    title: {type: String}
 });
-var articleModel = mongoose.model('article',articleSchema);
+var articleModel = mongoose.model('article', articleSchema);
 
 var co = require('co');
 var thunkify = require('thunkify');
-var find = thunkify(function(){articleModel.find.apply(articleModel,arguments)});
+var find = thunkify(function () {
+    articleModel.find.apply(articleModel, arguments)
+});
 module.exports = {
-    findall:function *() {
+    findall: function *() {
         return co(function *() {
             try {
                 var article = yield find();
@@ -25,5 +27,5 @@ module.exports = {
             }
         })
     },
-    find:find
+    find: find
 };

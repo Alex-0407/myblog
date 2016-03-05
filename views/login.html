@@ -5,14 +5,14 @@
     <link href="css/loginstyle.css" rel='stylesheet' type='text/css'/>
     <link href="css/button.css" rel="stylesheet" type="text/css">
     <link href="layer/need/layer.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="layer/layer.js"></script>
+
     <style>
-        .reg td{
+        .reg td {
             height: 40px;
             text-align: right;
         }
-        .reg th{
+
+        .reg th {
             height: 40px;
             text-align: center;
         }
@@ -48,6 +48,8 @@
 
 </body>
 <script src="js/silder.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/layer/2.1/layer.js"></script>
 <!--<script src="js/modernizr.js"></script>-->
 <script>
     $(document).ready(function () {
@@ -93,20 +95,20 @@
         var name = $("#regName").val();
         var password = $("#regPassword").val();
         var rePassword = $("#regPassword2").val();
-        if(password !== rePassword){
+        if (password !== rePassword) {
             alert("两次输入密码不一致！");
             return;
         }
         var query = {
-            name:name,
-            password:password
+            name: name,
+            password: password
         };
-        $.getJSON(url,query,function(data){
-            if(data == true){
+        $.getJSON(url, query, function (data) {
+            if (data == true) {
                 layer.closeAll();
                 alert("注册成功！");
                 return;
-            }else{
+            } else {
                 alert("该用户名已经被注册！");
                 return;
             }

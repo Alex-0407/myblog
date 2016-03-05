@@ -19,6 +19,7 @@ class Mongo:
         try:
             client = pymongo.MongoClient(host='localhost', port=27017)
             db = client.blog
+            db.authenticate('sweet', 'mubai031224')#权限验证
             return db
         except :
             print pymongo.errors
