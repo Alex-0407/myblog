@@ -19,7 +19,7 @@ class Mongo:
         try:
             client = pymongo.MongoClient(host='localhost', port=27017)
             db = client.blog
-            db.authenticate('sweet', 'mubai031224')#权限验证
+            # db.authenticate('sweet', 'mubai031224')#权限验证
             return db
         except :
             print pymongo.errors
@@ -59,8 +59,7 @@ class CNode:
         return newtext
 
     def getAbstract(self,text):
-
-        abstract = re.search('.*?</br>(.{300})',text,re.S)
+        abstract = re.search('.*?</br>(.{0,300})',text,re.S)
         return abstract.group(1)
 
     def start(self):
